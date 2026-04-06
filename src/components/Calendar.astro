@@ -1,0 +1,98 @@
+---
+interface Treino {
+  data: string;
+  distancia: string;
+  zona: string;
+}
+
+interface Props {
+  mes: string;
+  ano: number;
+  treinos: Treino[];
+}
+
+const { mes, ano, treinos } = Astro.props;
+
+const diasSemana = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'];
+
+// Abril 2026 comeca na quarta-feira (indice 3)
+const primeiroDia = 3;
+const totalDias = 30;
+
+// Criar array de treinos por dia
+const treinosPorDia: Record<number, Treino> = {};
+treinos.forEach(t => {
+  const dia = new Date(t.data).getDate();
+  treinosPorDia[dia] = t;
+});
+
+// Criar array de dias do calendario
+const diasCalendario: (number | null)[] = [];
+for (let i = 0; i < primeiroDia; i++) {
+  diasCalendario.push(null);
+}
+for (let i = 1; i <= totalDias; i++) {
+  diasCalendario.push(i);
+}
+
+const getZonaClass = (zona: string) => {
+  switch(zona) {
+    case 'z2': return 'from-green-500 to-green-600';
+    case 'z3': return 'from-yellow-500 to-yellow-600';
+    case 'z4': return 'from-orange-500 to-red-500';
+    default: return 'from-gray-500 to-gray-600';
+  }
+};
+
+const getZonaLabel = (zona: string) => {
+  switch(zona) {
+    case 'z2': return 'Z2';
+    case 'z3': return 'Z3';
+    case 'z4': return 'Z4';
+    default: return '';
+  }
+};
+---
+
+<section class="mb-8">
+  <h2 class="text-xl sm:text-2xl font-bold mb-4 pl-4 border-l-4 border-running-accent">
+    Calendario - Semana 1/12
+  </h2>
+
+  <div class="bg-white/5 rounded-xl p-3 sm:p-5">
+    <h3 class="text-lg sm:text-xl font-semibold mb-4">{mes} {ano}</h3>
+
+    <div class="grid grid-cols-7 gap-1 sm:gap-2">
+      {diasSemana.map(dia => (
+        <div class="text-center text-running-accent font-bold text-xs sm:text-sm py-2">
+          {dia}
+        </div>
+      ))}
+
+      {diasCalendario.map(dia => {
+        const treino = dia ? treinosPorDia[dia] : null;
+        const isTreino = !!treino;
+
+        return (
+          <div class={`
+            flex flex-col items-center justify-center rounded-lg p-1 sm:p-2 min-h-[50px] sm:min-h-[70px]
+            ${!dia ? 'bg-transparent' : isTreino
+              ? `bg-gradient-to-br ${getZonaClass(treino.zona)} shadow-lg`
+              : 'bg-white/5'}
+          `}>
+            {dia && (
+              <>
+                <span class="text-sm sm:text-lg font-bold">{dia}</span>
+                {isTreino && (
+                  <span class="text-[10px] sm:text-xs mt-1 text-center leading-tight">
+                    {treino.distancia.replace(' km', 'km')} {getZonaLabel(treino.zona)}
+                  </span>
+                )}
+              </>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

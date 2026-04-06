@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Calendar from '../components/Calendar.astro';
+import TrainingCard from '../components/TrainingCard.astro';
+import ZoneCard from '../components/ZoneCard.astro';
+import dados from '../data/treinos.json';
+
+const { meta, zonas, treinos } = dados;
+---
+
+<Layout title="Plano de Treino - Meia Maratona 21km">
+  <Header
+    titulo={meta.prova}
+    subtitulo={`Preparacao para a prova de ${new Date(meta.dataProva).toLocaleDateString('pt-BR')}`}
+    dataProva={meta.dataProva}
+  />
+
+  <Calendar mes="Abril" ano={2026} treinos={treinos} />
+
+  <section class="mb-8">
+    <h2 class="text-xl sm:text-2xl font-bold mb-4 pl-4 border-l-4 border-running-accent">
+      Treinos da Semana
+    </h2>
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {treinos.map(treino => (
+        <TrainingCard {...treino} />
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-8">
+    <h2 class="text-xl sm:text-2xl font-bold mb-4 pl-4 border-l-4 border-running-accent">
+      Zonas de Frequencia Cardiaca
+    </h2>
+    <div class="space-y-3">
+      {zonas.map(zona => (
+        <ZoneCard {...zona} />
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-8">
+    <h2 class="text-xl sm:text-2xl font-bold mb-4 pl-4 border-l-4 border-running-accent">
+      Tabela de Paces
+    </h2>
+    <div class="bg-white/5 rounded-xl overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-running-accent/20 text-running-accent">
+            <th class="p-3 text-left">Zona</th>
+            <th class="p-3 text-center">Pace</th>
+            <th class="p-3 text-center">FC</th>
+            <th class="p-3 text-left hidden sm:table-cell">Sensacao</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-white/10 hover:bg-white/5">
+            <td class="p-3">Z2 - Regenerativa</td>
+            <td class="p-3 text-center">6:26 - 7:15</td>
+            <td class="p-3 text-center">108-125</td>
+            <td class="p-3 hidden sm:table-cell">Muito facil, conversa normal</td>
+          </tr>
+          <tr class="border-b border-white/10 hover:bg-white/5">
+            <td class="p-3">Z3 - Moderada</td>
+            <td class="p-3 text-center">6:26 - 7:15</td>
+            <td class="p-3 text-center">125-144</td>
+            <td class="p-3 hidden sm:table-cell">Confortavel, frases curtas</td>
+          </tr>
+          <tr class="hover:bg-white/5">
+            <td class="p-3">Z4 - Estabilidade</td>
+            <td class="p-3 text-center">5:48 - 6:26</td>
+            <td class="p-3 text-center">144-162</td>
+            <td class="p-3 hidden sm:table-cell">Intenso, palavras soltas</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mb-8">
+    <h2 class="text-xl sm:text-2xl font-bold mb-4 pl-4 border-l-4 border-running-accent">
+      Dicas Importantes
+    </h2>
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="bg-white/5 rounded-xl p-5">
+        <h4 class="text-running-accent font-bold mb-3">Descanso</h4>
+        <ul class="space-y-2 text-sm">
+          <li>- Dias sem treino sao para descanso real</li>
+          <li>- Durma 7-8 horas por noite</li>
+          <li>- Hidrate-se bem durante o dia</li>
+        </ul>
+      </div>
+      <div class="bg-white/5 rounded-xl p-5">
+        <h4 class="text-running-accent font-bold mb-3">Alimentacao</h4>
+        <ul class="space-y-2 text-sm">
+          <li>- Coma 1-2h antes do treino</li>
+          <li>- Pos-treino: proteina + carboidrato</li>
+          <li>- Antes do longao: boas reservas de glicogenio</li>
+        </ul>
+      </div>
+      <div class="bg-white/5 rounded-xl p-5">
+        <h4 class="text-running-accent font-bold mb-3">Monitoramento</h4>
+        <ul class="space-y-2 text-sm">
+          <li>- Use o Garmin para acompanhar FC</li>
+          <li>- Registre como se sentiu apos cada treino</li>
+          <li>- Sentiu dor? Tire um dia extra</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="text-center py-8 opacity-60 text-sm">
+    <p>Plano de Treino para Meia Maratona 21km</p>
+    <p>Semana {meta.semanaAtual}/{meta.totalSemanas}</p>
+  </footer>
+</Layout>

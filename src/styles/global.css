@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+  --color-running-dark: #1a1a2e;
+  --color-running-darker: #16213e;
+  --color-running-accent: #e94560;
+  --color-running-purple: #533483;
+  --color-running-blue: #0f3460;
+}

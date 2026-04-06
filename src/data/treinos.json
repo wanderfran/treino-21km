@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "prova": "Meia Maratona 21km",
+    "dataProva": "2026-07-31",
+    "semanaAtual": 1,
+    "totalSemanas": 12
+  },
+  "zonas": [
+    {
+      "id": "z2",
+      "nome": "Zona Regenerativa",
+      "fc": "108-125 bpm",
+      "descricao": "Corrida leve e confortavel. Voce deve conseguir conversar normalmente. Ideal para longoes e recuperacao.",
+      "cor": "green"
+    },
+    {
+      "id": "z3",
+      "nome": "Zona Moderada",
+      "fc": "125-144 bpm",
+      "descricao": "Esforco moderado. Consegue falar frases curtas. Ritmo de corrida continua para construir resistencia.",
+      "cor": "yellow"
+    },
+    {
+      "id": "z4",
+      "nome": "Zona de Estabilidade",
+      "fc": "144-162 bpm",
+      "descricao": "Esforco intenso mas sustentavel. Dificil manter conversa. Treino de ritmo para melhorar o limiar.",
+      "cor": "orange"
+    }
+  ],
+  "treinos": [
+    {
+      "id": 1,
+      "data": "2026-04-07",
+      "diaSemana": "Terca-feira",
+      "tipo": "Ritmo",
+      "zona": "z4",
+      "distancia": "5 km",
+      "pace": "5:48 - 6:26 /km",
+      "tempo": "29'01\" a 32'09\"",
+      "fc": "144-162 bpm",
+      "percurso": "Plano",
+      "instrucoes": [
+        "Aquecimento: 10 minutos de trote leve + alongamento dinamico",
+        "Execucao: Corra os 5km mantendo o pace entre 5:48-6:26/km",
+        "Foco: Mantenha a FC entre 144-162 bpm. Se subir muito, reduza o pace",
+        "Desaquecimento: 5 minutos de caminhada + alongamento estatico",
+        "Dica: Este treino melhora seu limiar anaerobico. Deve ser desconfortavel mas sustentavel"
+      ]
+    },
+    {
+      "id": 2,
+      "data": "2026-04-09",
+      "diaSemana": "Quinta-feira",
+      "tipo": "Continuo",
+      "zona": "z3",
+      "distancia": "7 km",
+      "pace": "6:26 - 7:15 /km",
+      "tempo": "45'01\" a 50'43\"",
+      "fc": "125-144 bpm",
+      "percurso": "Plano",
+      "instrucoes": [
+        "Aquecimento: 5 minutos de caminhada rapida",
+        "Execucao: Corra os 7km em ritmo constante (6:26-7:15/km)",
+        "Foco: Mantenha a FC entre 125-144 bpm. Respiracao ritmica e controlada",
+        "Desaquecimento: 5 minutos de trote leve + alongamento",
+        "Dica: Mantenha um ritmo que permita falar frases curtas. Nao acelere no final"
+      ]
+    },
+    {
+      "id": 3,
+      "data": "2026-04-11",
+      "diaSemana": "Sabado",
+      "tipo": "Longo",
+      "zona": "z2",
+      "distancia": "11 km",
+      "pace": "6:26 - 7:15 /km",
+      "tempo": "1h10'44\" a 1h19'43\"",
+      "fc": "108-125 bpm",
+      "percurso": "Plano",
+      "instrucoes": [
+        "Aquecimento: Comece caminhando 5 minutos, depois trote suave",
+        "Execucao: Corra os 11km em ritmo LEVE (6:26-7:15/km)",
+        "Foco: FC BAIXA (108-125 bpm). Se passar de 125, REDUZA o ritmo",
+        "Hidratacao: Leve agua ou tenha pontos de hidratacao no percurso",
+        "Desaquecimento: 10 minutos de caminhada + alongamento completo",
+        "Dica: O longao deve ser FACIL! Voce deve conseguir conversar o tempo todo"
+      ]
+    }
+  ]
+}

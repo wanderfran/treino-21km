@@ -1,0 +1,29 @@
+---
+interface Props {
+  id: string;
+  nome: string;
+  fc: string;
+  descricao: string;
+}
+
+const { id, nome, fc, descricao } = Astro.props;
+
+const getBgClass = (id: string) => {
+  switch(id) {
+    case 'z2': return 'bg-green-500';
+    case 'z3': return 'bg-yellow-500';
+    case 'z4': return 'bg-orange-500';
+    default: return 'bg-gray-500';
+  }
+};
+---
+
+<div class="flex flex-col sm:flex-row items-center gap-4 p-4 bg-white/5 rounded-xl">
+  <div class={`w-14 h-14 ${getBgClass(id)} rounded-xl flex items-center justify-center font-bold text-xl text-black shrink-0`}>
+    {id.toUpperCase()}
+  </div>
+  <div class="text-center sm:text-left">
+    <h4 class="font-bold">{nome} ({fc})</h4>
+    <p class="text-sm opacity-70 mt-1">{descricao}</p>
+  </div>
+</div>
