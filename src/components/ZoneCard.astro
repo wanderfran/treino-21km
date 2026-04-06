@@ -8,22 +8,27 @@ interface Props {
 
 const { id, nome, fc, descricao } = Astro.props;
 
-const getBgClass = (id: string) => {
+const getZoneStyle = (id: string) => {
   switch(id) {
-    case 'z2': return 'bg-green-500';
-    case 'z3': return 'bg-yellow-500';
-    case 'z4': return 'bg-orange-500';
-    default: return 'bg-gray-500';
+    case 'z2': return { bg: 'bg-green-500/20', border: 'border-green-500/30', dot: 'bg-green-500' };
+    case 'z3': return { bg: 'bg-yellow-500/20', border: 'border-yellow-500/30', dot: 'bg-yellow-500' };
+    case 'z4': return { bg: 'bg-orange-500/20', border: 'border-orange-500/30', dot: 'bg-orange-500' };
+    default: return { bg: 'bg-gray-500/20', border: 'border-gray-500/30', dot: 'bg-gray-500' };
   }
 };
+
+const style = getZoneStyle(id);
 ---
 
-<div class="flex flex-col sm:flex-row items-center gap-4 p-4 bg-white/5 rounded-xl">
-  <div class={`w-14 h-14 ${getBgClass(id)} rounded-xl flex items-center justify-center font-bold text-xl text-black shrink-0`}>
-    {id.toUpperCase()}
+<div class={`${style.bg} border ${style.border} rounded-xl p-4 flex items-center gap-4`}>
+  <div class={`w-10 h-10 ${style.dot} rounded-full flex items-center justify-center shrink-0`}>
+    <span class="text-dark font-bold text-sm">{id.toUpperCase()}</span>
   </div>
-  <div class="text-center sm:text-left">
-    <h4 class="font-bold">{nome} ({fc})</h4>
-    <p class="text-sm opacity-70 mt-1">{descricao}</p>
+  <div class="flex-1 min-w-0">
+    <div class="flex items-center justify-between mb-1">
+      <h4 class="font-semibold text-sm">{nome}</h4>
+      <span class="text-xs text-gray-text">{fc}</span>
+    </div>
+    <p class="text-xs text-gray-text line-clamp-2">{descricao}</p>
   </div>
 </div>
